@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tannery Desk — Digital Sourcing Network for Leather</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#F3EBDD;--card:#FBF7EF;--ink:#241812;--mute:#6E5B4C;--line:#DDD0BC;--brand:#2B1B12;--tan:#8A5A36;--gold:#B8924A;--ok:#3F7D4E;--warn:#C28A1E;--bad:#B23A2E;--onbrand:#F3EBDD}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17100B;--card:#221810;--ink:#F1E8D8;--mute:#B5A28D;--line:#3A2B1E;--brand:#0F0A07;--tan:#C58B5B}}
+:root[data-theme="dark"]{--bg:#17100B;--card:#221810;--ink:#F1E8D8;--mute:#B5A28D;--line:#3A2B1E;--brand:#0F0A07;--tan:#C58B5B}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Newsreader,Georgia,serif;line-height:1.12;margin:0 0 .5em}
+h1{font-size:clamp(2.1rem,5vw,3.6rem)}h2{font-size:clamp(1.5rem,3vw,2.1rem)}h3{font-size:1.15rem}
+p{margin:0 0 1em;max-width:62ch}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--brand);color:var(--onbrand);display:flex;align-items:center;gap:6px;padding:10px 16px;flex-wrap:wrap}
+nav b{font:700 1.25rem Newsreader,serif;margin-right:auto;color:var(--gold)}
+nav button{background:none;border:1px solid transparent;color:inherit;padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:.9rem}
+nav button.on{border-color:var(--gold);color:var(--gold)}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 16px 60px}
+.btn{background:var(--brand);color:var(--onbrand);border:0;border-radius:10px;padding:11px 18px;font:600 .95rem inherit;cursor:pointer}
+.btn.gold{background:var(--gold);color:#241812}.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}.btn.sm{padding:6px 11px;font-size:.82rem}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hero{background:var(--brand);color:var(--onbrand);border-radius:18px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.hero p{color:#D9CBB5}.hero .row{display:flex;gap:10px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:.75rem;padding:2px 9px;border-radius:99px;background:var(--line);color:var(--ink)}
+.tag.v{background:#E4D3A8;color:#4A3710}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:20px}
+.stat b{display:block;font:700 1.9rem Newsreader,serif}.stat span{color:var(--mute);font-size:.85rem}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit}
+.opts{display:flex;flex-wrap:wrap;gap:8px}.opt{padding:9px 14px;border:1px solid var(--line);background:var(--bg);border-radius:99px;cursor:pointer;color:var(--ink);font:inherit}
+.opt:hover{border-color:var(--tan)}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:16px}.bar i{display:block;height:100%;background:var(--gold);transition:width .25s}
+.tbl{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}th{color:var(--mute);font-weight:600}
+.pill{padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:600;background:var(--line);white-space:nowrap}
+.g{color:var(--ok)}.y{color:var(--warn)}.r{color:var(--bad)}
+.tl{display:flex;gap:0;margin:14px 0;overflow-x:auto;padding-bottom:6px}
+.tl div{flex:1;min-width:84px;text-align:center;font-size:.72rem;color:var(--mute);position:relative;padding-top:20px}
+.tl div:before{content:"";position:absolute;top:5px;left:0;right:0;height:3px;background:var(--line)}
+.tl div:after{content:"";position:absolute;top:0;left:50%;margin-left:-7px;width:14px;height:14px;border-radius:50%;background:var(--line);border:2px solid var(--card)}
+.tl .done:before,.tl .done:after{background:var(--gold)}.tl .now{color:var(--ink);font-weight:600}.tl .now:after{background:var(--brand);box-shadow:0 0 0 3px var(--gold)}
+.swatch{height:96px;border-radius:10px;margin-bottom:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--brand);color:var(--onbrand);padding:11px 18px;border-radius:10px;z-index:9;border:1px solid var(--gold)}
+.hide{display:none}.sec{margin-top:44px}
+@media(max-width:760px){.hero,.two{grid-template-columns:1fr}nav b{width:100%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<nav aria-label="Main"><b>Tannery Desk</b>
+<button data-v="home">Home</button><button data-v="catalog">Catalog</button><button data-v="client">Client</button><button data-v="factory">Factory</button><button data-v="admin">Admin</button></nav>
+<main class="wrap" id="app"></main>
+<div id="toast" class="toast hide" role="status"></div>
+<script>
+const COL={Black:"#1C1612",Brown:"#6B4429",Tan:"#B98A56",White:"#EDE6D8",Red:"#8E2F26",Blue:"#2D4561",Green:"#3C5A3E"};
+const PRODUCTS=[
+{id:1,n:"Full Grain Cow Nappa",t:"Cow",a:"Footwear",f:"Full Grain",c:"Brown",th:"1.4–1.6 mm",moq:"500 sq ft",lead:"21 days",loc:"Kanpur, UP",cert:"LWG Gold",s:true},
+{id:2,n:"Buffalo Distressed Tan",t:"Buffalo",a:"Bags",f:"Aniline",c:"Tan",th:"1.8–2.0 mm",moq:"800 sq ft",lead:"28 days",loc:"Chennai, TN",cert:"ISO 9001",s:true},
+{id:3,n:"Goat Suede Velvet",t:"Goat",a:"Garments",f:"Suede",c:"Blue",th:"0.8–1.0 mm",moq:"300 sq ft",lead:"18 days",loc:"Kolkata, WB",cert:"REACH",s:false},
+{id:4,n:"Corrected Grain Automotive Hide",t:"Cow",a:"Automotive",f:"Corrected Grain",c:"Black",th:"1.2–1.4 mm",moq:"2,000 sq ft",lead:"35 days",loc:"Ambur, TN",cert:"IATF 16949",s:true},
+{id:5,n:"Semi-Aniline Furniture Hide",t:"Cow",a:"Furniture",f:"Semi-Aniline",c:"Red",th:"1.1–1.3 mm",moq:"1,500 sq ft",lead:"30 days",loc:"Kanpur, UP",cert:"LWG Silver",s:false},
+{id:6,n:"Sheep Nubuck Soft",t:"Sheep",a:"Accessories",f:"Nubuck",c:"Green",th:"0.7–0.9 mm",moq:"250 sq ft",lead:"16 days",loc:"Agra, UP",cert:"REACH",s:true}];
+const FACT=[{n:"Ganga Tanning Works",loc:"Kanpur",score:94},{n:"Coromandel Hides",loc:"Chennai",score:88},{n:"Pinnacle Leathers",loc:"Ambur",score:81}];
+const STAGES=["Order Confirmed","Production Started","Quality Check","Packaging","Dispatched","In Transit","Delivered"];
+const RST=["Submitted","Factory Matching","Quotation Received","Client Approval","Order Created"];
+const S={view:"home",rfqs:[
+{id:"RFQ-1041",item:"Buffalo Distressed Tan",qty:"4,000 sq ft",st:1,fac:1,base:null,final:null},
+{id:"RFQ-1042",item:"Goat Suede Velvet",qty:"1,200 sq ft",st:0,fac:null,base:null,final:null}],
+orders:[{id:"ORD-2087",item:"Full Grain Cow Nappa",qty:"6,000 sq ft",stage:2,fac:0,due:"Oct 28",late:false,paid:"50%"}],
+rid:1043,oid:2088,wiz:{step:0,data:{}}};
+const WSTEPS=[
+{q:"What are you looking for?",k:"need",o:["Finished Leather","Raw Leather","Leather Sheets","Leather Rolls","Footwear","Bags","Furniture","Automotive","Garment","Custom"]},
+{q:"Which leather type?",k:"type",o:["Cow","Buffalo","Goat","Sheep","Calf","Other"]},
+{q:"Which color?",k:"color",o:Object.keys(COL).concat("Custom")},
+{q:"Which thickness?",k:"thick",o:["0.6–0.9 mm","1.0–1.4 mm","1.5–2.0 mm","2.0+ mm"]},
+{q:"Which finish?",k:"finish",o:["Full Grain","Top Grain","Corrected Grain","Suede","Nubuck","Patent","Aniline","Semi-Aniline"]},
+{q:"How much do you need?",k:"qty",in:"text",ph:"e.g. 10,000 sq ft"},
+{q:"Target price (optional)",k:"price",in:"text",ph:"e.g. ₹95 per sq ft",opt:1},
+{q:"When do you need it?",k:"date",in:"date"},
+{q:"Reference image or design (optional)",k:"file",in:"file",opt:1},
+{q:"Anything else the factory should know?",k:"note",in:"area",opt:1}];
+const $=s=>document.querySelector(s);
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.remove("hide");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.add("hide"),2600)}
+function go(v){S.view=v;document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==v));R();scrollTo(0,0)}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
+const tl=(cur,arr)=>`<div class="tl">${arr.map((s,i)=>`<div class="${i<cur?"done":i==cur?"now":""}">${s}</div>`).join("")}</div>`;
+const health=o=>o.late?'<span class="r">● Delayed</span>':o.stage==2||o.paid!="100%"&&o.stage>3?'<span class="y">● Attention</span>':'<span class="g">● On track</span>';
+function wizard(){const w=S.wiz,st=WSTEPS[w.step];let body="";
+if(st.o)body=`<div class="opts">${st.o.map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join("")}</div>`;
+else body=`<${st.in=="area"?"textarea rows=3":"input"} id="wv" ${st.in=="area"?"":`type="${st.in}"`} placeholder="${st.ph||""}"${st.in=="area"?"></textarea>":">"}<p style="margin-top:12px"><button class="btn" id="wn">${w.step==9?"Find the right supplier":"Continue"}</button> ${st.opt?'<button class="btn ghost" id="ws">Skip</button>':""}</p>`;
+return `<div class="card" id="wiz"><div class="bar"><i style="width:${(w.step+1)*10}%"></i></div><p style="color:var(--mute);margin:0">Step ${w.step+1} of 10</p><h3>${st.q}</h3>${body}${w.step?'<button class="btn ghost sm" id="wb">Back</button>':""}</div>`}
+function wireWiz(){const w=S.wiz,st=WSTEPS[w.step];
+document.querySelectorAll("#wiz .opt").forEach(b=>b.onclick=()=>adv(b.dataset.o));
+const n=$("#wn");if(n)n.onclick=()=>{const v=$("#wv").value.trim();const f=st.in=="file"?($("#wv").files[0]||{}).name||"":v;if(!f&&!st.opt)return toast("Please fill this in to continue.");adv(f)};
+const s=$("#ws");if(s)s.onclick=()=>adv("");const b=$("#wb");if(b)b.onclick=()=>{w.step--;R()}}
+function adv(v){const w=S.wiz;w.data[WSTEPS[w.step].k]=v;
+if(w.step<9){w.step++;return R()}
+const d=w.data,id="RFQ-"+S.rid++;S.rfqs.unshift({id,item:`${d.color||""} ${d.type||""} ${d.finish||""}`.trim()+" leather",qty:d.qty||"TBC",st:0,fac:null});
+S.wiz={step:0,data:{}};toast(id+" sent to the mediator for factory matching.");go("client")}
+function home(){return `<section class="hero"><div><h1>Source leather. Connect with the right factory. Build without the hassle.</h1>
+<p>One platform to discover leather, submit requirements, manage production and connect with verified manufacturers — without unnecessary factory visits.</p>
+<div class="row"><button class="btn gold" data-go="catalog">Find leather</button><button class="btn ghost" style="color:var(--onbrand);border-color:var(--onbrand)" onclick="document.getElementById('need').scrollIntoView({behavior:'smooth'})">Request custom order</button><button class="btn ghost" style="color:var(--onbrand);border-color:var(--onbrand)" data-go="factory">List your factory</button></div></div>
+<div class="card" style="color:var(--ink)"><b>ORD-2087 · Full Grain Cow Nappa</b>${tl(2,STAGES)}<p style="margin:0;color:var(--mute)">One order. One dashboard. One point of contact.</p></div></section>
+<section class="sec" id="need"><h2>Tell us what you need</h2><p>Answer ten short questions. We turn them into a technical specification and match it with verified factories.</p>${wizard()}</section>
+<section class="sec"><h2>From requirement to delivery, managed digitally</h2><div class="grid">
+${[["Requirement","You describe the leather. We write the specification."],["Matching","Factories are ranked by capacity, quality, lead time and price."],["Quote and approval","One final quotation. Accept, change or ask a question."],["Production and QC","Approved updates and inspection reports, in one timeline."],["Shipping","Tracking and documents until delivery."]].map(x=>`<div class="card"><h3>${x[0]}</h3><p style="margin:0;color:var(--mute)">${x[1]}</p></div>`).join("")}</div></section>`}
+function catalog(){const f=S.f||{};const list=PRODUCTS.filter(p=>(!f.t||p.t==f.t)&&(!f.a||p.a==f.a)&&(!f.s||p.s));
+const sel=(k,l,a)=>`<select data-f="${k}" aria-label="${l}"><option value="">${l}: all</option>${a.map(x=>`<option ${f[k]==x?"selected":""}>${x}</option>`).join("")}</select>`;
+return `<h1>Leather catalog</h1><div class="grid" style="margin-bottom:18px">${sel("t","Leather type",["Cow","Buffalo","Goat","Sheep"])}${sel("a","Application",["Footwear","Bags","Garments","Automotive","Furniture","Accessories"])}<label style="display:flex;gap:8px;align-items:center;margin:0"><input type="checkbox" style="width:auto" data-f="s" ${f.s?"checked":""}> Samples available</label></div>
+<div class="grid">${list.map(p=>`<div class="card"><div class="swatch" style="background:${COL[p.c]}"></div><h3>${p.n}</h3><p style="margin:0 0 8px;color:var(--mute);font-size:.88rem">${p.t} · ${p.f} · ${p.th}<br>${p.a} · MOQ ${p.moq} · Lead ${p.lead}<br>${p.loc}</p><span class="tag v">Verified factory</span> <span class="tag">${p.cert}</span> ${p.s?'<span class="tag">Sample available</span>':""}
+<p style="margin:12px 0 0;display:flex;gap:6px;flex-wrap:wrap"><button class="btn sm" data-q="${p.id}">Request quote</button>${p.s?`<button class="btn sm ghost" data-s="${p.id}">Request sample</button>`:""}<button class="btn sm ghost" data-m="1">Ask mediator</button></p></div>`).join("")||"<p>No products match these filters. Clear a filter to see more.</p>"}</div>`}
+function client(){const pend=S.rfqs.filter(r=>r.st==3);
+return `<h1>Client dashboard</h1><div class="stats">${[["Active RFQs",S.rfqs.filter(r=>r.st<4).length],["Pending quotes",pend.length],["Active orders",S.orders.length],["Pending payments",S.orders.filter(o=>o.paid!="100%").length]].map(x=>`<div class="card stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join("")}</div>
+<h2>My RFQs</h2><div class="card tbl"><table><tr><th>RFQ</th><th>Product</th><th>Qty</th><th>Status</th><th>Next step</th></tr>${S.rfqs.map(r=>`<tr><td>${r.id}</td><td>${r.item}</td><td>${r.qty}</td><td><span class="pill">${RST[r.st]}</span></td><td>${r.st==3?`<b>₹${r.final.toLocaleString()}/sq ft</b> <button class="btn sm" data-acc="${r.id}">Accept quote</button> <button class="btn sm ghost" data-m="1">Ask question</button>`:r.st==4?"Order created":"We're on it"}</td></tr>`).join("")}</table></div>
+<h2 style="margin-top:30px">My orders</h2>${S.orders.map(o=>`<div class="card" style="margin-bottom:12px"><b>${o.id} · ${o.item}</b> · ${o.qty} · Due ${o.due} · Paid ${o.paid} · ${health(o)}${tl(o.stage,STAGES)}<p style="margin:0;color:var(--mute)">Next: ${o.stage<6?STAGES[o.stage+1]:"Leave a rating"}. Nothing needs your approval right now.</p></div>`).join("")}`}
+function factory(){const mine=S.rfqs.filter(r=>r.fac==0&&r.st==1||r.fac==1&&r.st==1);
+return `<h1>Factory dashboard · Ganga Tanning Works</h1><div class="stats">${[["Quotes requested",S.rfqs.filter(r=>r.st==1).length],["Active production",S.orders.length],["Capacity used","72%"]].map(x=>`<div class="card stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join("")}</div>
+<h2>Requirements assigned by mediator</h2>${S.rfqs.filter(r=>r.st==1).map(r=>`<div class="card" style="margin-bottom:10px"><b>${r.id}</b> · ${r.item} · ${r.qty}<p style="margin:10px 0 0;display:flex;gap:8px;flex-wrap:wrap"><input type="number" id="q${r.id}" placeholder="Price per sq ft (₹)" style="max-width:200px"><button class="btn sm" data-sub="${r.id}">Submit quote</button><button class="btn sm ghost" data-rej="${r.id}">Decline</button></p></div>`).join("")||'<div class="card">No new requirements. New matches appear here when the mediator assigns them.</div>'}
+<h2 style="margin-top:30px">Production</h2>${S.orders.map(o=>`<div class="card"><b>${o.id}</b> · ${o.item}${tl(o.stage,STAGES)}<button class="btn sm" data-adv="${o.id}" ${o.stage>=6?"disabled":""}>Mark "${STAGES[Math.min(o.stage+1,6)]}"</button></div>`).join("")}`}
+function admin(){const rev=S.orders.length*184000+1240000;
+return `<h1>Mediator control room</h1><div class="stats">${[["Clients",48],["Factories",19],["Open RFQs",S.rfqs.filter(r=>r.st<4).length],["Orders",S.orders.length+23],["Revenue",`₹${(rev/100000).toFixed(1)}L`]].map(x=>`<div class="card stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join("")}</div>
+<h2>RFQ pipeline</h2>${S.rfqs.filter(r=>r.st<4).map(r=>`<div class="card" style="margin-bottom:10px"><b>${r.id}</b> · ${r.item} · ${r.qty} · <span class="pill">${RST[r.st]}</span>
+${r.st==0?`<div class="grid" style="margin-top:10px">${FACT.map((f,i)=>`<div class="card"><b>${f.n}</b><br><span style="color:var(--mute)">${f.loc} · Match score ${f.score}%</span><br><button class="btn sm" style="margin-top:8px" data-asg="${r.id}:${i}">Assign</button></div>`).join("")}</div>`:""}
+${r.st==2?`<p style="margin:10px 0 0">Factory quote ₹${r.base}/sq ft · Margin <input type="number" id="m${r.id}" value="8" style="width:70px;display:inline-block"> % <button class="btn sm gold" data-send="${r.id}">Send to client</button></p>`:""}</div>`).join("")||'<div class="card">Pipeline is clear.</div>'}
+<h2 style="margin-top:30px">Pending approvals</h2><div class="card tbl"><table><tr><th>Factory</th><th>Location</th><th>Documents</th><th></th></tr>${(S.appr||["Deccan Hide Co.","Ravi Exports"]).map(n=>`<tr><td>${n}</td><td>Tamil Nadu</td><td>Registration, LWG certificate</td><td><button class="btn sm" data-ver="${n}">Verify</button></td></tr>`).join("")}</table></div>
+<h2 style="margin-top:30px">Order health</h2>${S.orders.map(o=>`<div class="card"><b>${o.id}</b> · ${o.item} · ${health(o)} <button class="btn sm ghost" data-late="${o.id}">${o.late?"Clear delay":"Flag delay"}</button></div>`).join("")}`}
+function R(){const v=S.view;$("#app").innerHTML=({home,catalog,client,factory,admin})[v]();
+if(v=="home")wireWiz();
+$("#app").querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+$("#app").querySelectorAll("[data-f]").forEach(e=>e.onchange=()=>{S.f=S.f||{};S.f[e.dataset.f]=e.type=="checkbox"?e.checked:e.value;R()});
+$("#app").querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const p=PRODUCTS.find(x=>x.id==b.dataset.q),id="RFQ-"+S.rid++;S.rfqs.unshift({id,item:p.n,qty:p.moq,st:0,fac:null});toast(id+" submitted. Track it in your dashboard.")});
+$("#app").querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>toast("Sample request sent to the mediator for review."));
+$("#app").querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>toast("Message sent to your mediator."));
+const f=(a,fn)=>$("#app").querySelectorAll(`[data-${a}]`).forEach(b=>b.onclick=()=>{fn(b.dataset[a]);R()});
+const rf=id=>S.rfqs.find(r=>r.id==id);
+f("asg",v=>{const[i,k]=v.split(":");Object.assign(rf(i),{st:1,fac:+k});toast("Requirement sent to "+FACT[k].n)});
+f("sub",id=>{const p=+$("#q"+id).value;if(!p)return toast("Enter a price to submit the quote.");Object.assign(rf(id),{st:2,base:p});toast("Quote sent privately to the mediator.")});
+f("rej",id=>{rf(id).st=0;rf(id).fac=null;toast("Declined. The mediator will match another factory.")});
+f("send",id=>{const m=+$("#m"+id).value||0,r=rf(id);r.final=Math.round(r.base*(1+m/100));r.st=3;toast("Final quotation sent to the client.")});
+f("acc",id=>{const r=rf(id);r.st=4;S.orders.unshift({id:"ORD-"+S.oid++,item:r.item,qty:r.qty,stage:0,fac:0,due:"Dec 12",late:false,paid:"20%"});toast("Quote accepted. Order created; 20% advance is due.")});
+f("adv",id=>{const o=S.orders.find(x=>x.id==id);o.stage++;if(o.stage==6)o.paid="100%";toast("Client timeline updated.")});
+f("late",id=>{const o=S.orders.find(x=>x.id==id);o.late=!o.late});
+f("ver",n=>{S.appr=(S.appr||["Deccan Hide Co.","Ravi Exports"]).filter(x=>x!=n);toast(n+" verified.")})}
+go("home");
+</script></body></html>

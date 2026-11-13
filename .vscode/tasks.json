@@ -1,0 +1,483 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Tannery Desk: Set up backend environment",
+			"type": "shell",
+			"command": "C:\\Python314\\python.exe",
+			"args": [
+				"-c",
+				"from pathlib import Path; import secrets, subprocess, sys; p=Path('.env'); p.write_text('\\n'.join(('SECRET_KEY='+secrets.token_urlsafe(48) if x.startswith('SECRET_KEY=') else 'DEBUG=True' if x.startswith('DEBUG=') else '' if x.startswith('DATABASE_URL=') else x) for x in Path('.env.example').read_text().splitlines())+'\\n') if not p.exists() else None; subprocess.run([sys.executable,'-m','venv','.venv'],check=True); subprocess.run([str(Path('.venv/Scripts/python.exe')),'-m','pip','install','-r','backend/requirements.txt'],check=True)"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Install dependencies",
+			"type": "shell",
+			"command": "C:\\Python314\\python.exe",
+			"args": [
+				"-c",
+				"import secrets,subprocess,sys; from pathlib import Path; p=Path(\".env\"); p.write_text(\"\\n\".join((\"SECRET_KEY=\"+secrets.token_urlsafe(48) if l.startswith(\"SECRET_KEY=\") else \"DEBUG=True\" if l.startswith(\"DEBUG=\") else \"\" if l.startswith(\"DATABASE_URL=\") else l) for l in Path(\".env.example\").read_text().splitlines())+\"\\n\") if not p.exists() else None; subprocess.run([sys.executable,\"-m\",\"venv\",\".venv\"],check=True); subprocess.run([\".venv/Scripts/python.exe\",\"-m\",\"pip\",\"install\",\"-r\",\"backend/requirements.txt\"],check=True)"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Create virtual environment",
+			"type": "shell",
+			"command": "C:\\Python314\\python.exe",
+			"args": [
+				"-m",
+				"venv",
+				".venv"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Configure local environment",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				".setup_env.py"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Install requirements",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-m",
+				"pip",
+				"install",
+				"-r",
+				"backend/requirements.txt"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Django system check",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Recheck Django configuration",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Generate app migrations",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"makemigrations",
+				"accounts",
+				"factories",
+				"products",
+				"rfqs",
+				"orders",
+				"payments",
+				"notifications",
+				"messaging",
+				"reviews",
+				"core"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Apply migrations",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"migrate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Seed demo data",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"seed_demo"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Seed demo after fix",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"seed_demo"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Run backend tests",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Discover API tests",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"test",
+				"core.tests.test_api",
+				"--verbosity",
+				"2"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Run core tests",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"test",
+				"core"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Start local server",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"runserver",
+				"127.0.0.1:8000",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Verify API tests",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"test",
+				"core"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Start updated server",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"runserver",
+				"127.0.0.1:8001",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Check local PostgreSQL",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				".check_postgres.py"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Test payment security",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"test",
+				"core"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Verify production payment guard",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				".verify_prod_settings.py"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Final full test suite",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Collect static assets",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py collectstatic --noinput"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Restore demo seed data",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py seed_demo --reset"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Final tests after setup",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Final Django check",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Check migration state",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py makemigrations --check --dry-run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Identify extra server PID",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr :8001"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Stop extra test server",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Stop-Process -Id 23296"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Stop browser test server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"23296"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Confirm test server stopped",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr :8001"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Identify active server PID",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr :8000"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Check port 8000 listener",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr LISTENING | findstr :8000"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Start final server",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"runserver",
+				"127.0.0.1:8000",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Find final server PID",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr LISTENING | findstr :8000"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Restart updated server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"23240"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Final verified test suite",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Final clean system check",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d backend && ..\\.venv\\Scripts\\python.exe manage.py check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Serve final build",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"runserver",
+				"127.0.0.1:8000",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Identify active listener",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr LISTENING | findstr :8000"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Serve updated browser build",
+			"type": "shell",
+			"command": "C:\\Users\\Naman\\OneDrive\\Desktop\\222\\tannery-desk\\.venv\\Scripts\\python.exe",
+			"args": [
+				"backend/manage.py",
+				"runserver",
+				"127.0.0.1:8002"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tannery Desk: Check updated server process",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"netstat -ano | findstr LISTENING | findstr :8002"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

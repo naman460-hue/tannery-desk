@@ -1,0 +1,12 @@
+Django>=5.1,<5.3
+djangorestframework>=3.15,<3.17
+djangorestframework-simplejwt>=5.3,<5.6
+django-cors-headers>=4.3
+dj-database-url>=2.1
+psycopg[binary]>=3.1
+python-dotenv>=1.0
+Pillow>=10.0
+razorpay>=1.4
+setuptools            # razorpay SDK imports pkg_resources
+whitenoise>=6.6
+gunicorn>=21.2
